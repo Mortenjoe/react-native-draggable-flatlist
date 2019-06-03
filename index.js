@@ -334,7 +334,9 @@ class SortableFlatList extends Component {
     return !!hoverComponent && (
       <Animated.View style={[
         horizontal ? styles.hoverComponentHorizontal : styles.hoverComponentVertical,
-        { transform: [horizontal ? { translateX: this._hoverAnim } : { translateY: this._hoverAnim }] }]} >
+        { transform: [horizontal ? 
+          { translateX: this._hoverAnim.interpolate({inputRange:[0,this._containerSize],outputRange:[0,this._containerSize],extrapolate:"clamp"}) } : 
+          { translateY: this._hoverAnim.interpolate({inputRange:[0,this._containerSize],outputRange:[0,this._containerSize],extrapolate:"clamp"}) }] }]} >
         {hoverComponent}
       </Animated.View>
     )
